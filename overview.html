@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Story Yes or Yes</title>
+    <link rel="shortcut icon" href="https://res.sui.com/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./stylesheets/common.css">
+    <link rel="stylesheet" href="./stylesheets/overview.css" />
+</head>
+
+<body>
+    <!--navbar-->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="./index.html">
+                    <img src="./images/logo3.png" style="max-height: 100%; width: 120px;">
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+
+                </div>
+
+                <div class="navbar-end">
+                    <a class="navbar-item is-active is-tab">
+                        Overview
+                    </a>
+                    <a class="navbar-item" href="./account.html">
+                        Account
+                    </a>
+                    <a class="navbar-item" href="./report-budget-comparison.html">
+                        Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container" id="app">
+            <h3 class="subtitle"><strong>Asset Overview</strong></h3>
+            <div>
+                <nav class="level mt-5 p-6">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading is-size-6">Asset</p>
+                            <p class="title has-text-danger is-size-2">26,681.00</p>
+                        </div>
+                    </div>
+
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading is-size-6">Liability</p>
+                            <p class="title has-text-success is-size-2">16,000.00</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading is-size-6">Net Assets</p>
+                            <p class="title is-size-2">10,681.00</p>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <br>
+            <h3 class="subtitle mt-6 pt-6"><strong>Income and Expense Statement</strong></h3>
+            <div class="card">
+                <template>
+                    <b-table :data="tableData">
+
+                        <b-table-column field="status" label="Status">
+                            <template v-slot:header="{ column }">
+                                <b-tooltip :label="column.label" append-to-body dashed>
+                                    {{ column.label }}
+                                </b-tooltip>
+                            </template>
+                            <template v-slot="props"> {{ props.row.status }} </template>
+                        </b-table-column>
+
+                        <b-table-column field="this_week" label="This week">
+                            <template v-slot:header="{ column }">
+                                <b-tooltip :label="column.label" append-to-body dashed>
+                                    {{ column.label }}
+                                </b-tooltip>
+                            </template>
+                            <template v-slot="props"> {{ props.row.this_week }} </template>
+                        </b-table-column>
+
+                        <b-table-column field="this_month" label="This month">
+                            <template v-slot:header="{ column }">
+                                <b-tooltip :label="column.label" append-to-body dashed>
+                                    {{ column.label }}
+                                </b-tooltip>
+                            </template>
+                            <template v-slot="props"> {{ props.row.this_month }} </template>
+                        </b-table-column>
+
+                        <b-table-column field="this_year" label="This year">
+                            <template v-slot:header="{ column }">
+                                <b-tooltip :label="column.label" append-to-body dashed>
+                                    {{ column.label }}
+                                </b-tooltip>
+                            </template>
+                            <template v-slot="props"> {{ props.row.this_year }} </template>
+                        </b-table-column>
+                    </b-table>
+                </template>
+            </div>
+            <h3 class="subtitle mt-6 pt-5"><strong>Nov. 2021 Financial Presentation</strong></h3>
+            <div>
+                <p class="mt-5">
+                    <img src="https://i.loli.net/2021/10/11/4Ehdif6bnyx1N2W.png" width="25" height="25">
+                    &nbsp&nbsp&nbspToday is your <strong>24th</strong> day of bookkeeping, with a total of
+                    <strong>59</strong>
+                    entries in this book.
+                    <br>
+                <p class="mt-5"><img src="https://i.loli.net/2021/10/11/4Ehdif6bnyx1N2W.png" width="25" height="30">
+                    &nbsp&nbsp&nbspThe budget for this month is <strong>$12,000.00</strong> and <strong
+                        class="has-text-success">$9,319.00</strong> has been used, leaving <strong
+                        class="has-text-danger">$2,681.00
+                    </strong>available.
+                    <a href="./account.html"> &nbsp&nbsp&nbspLearn more ></a>
+                </p>
+            </div>
+            <h3 class="subtitle mt-6 mb-6 pt-4"><strong>Major expense charts</strong></h3>
+            <div class="columns is-vcentered">
+                <div class="column is-half">
+                    <canvas id="myChart2"></canvas>
+                </div>
+
+                <div class="column is-half">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <a href="./report-budget-comparison.html"> More ></a>
+    </section>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="./javascripts/common.js"></script>
+    <script src="./javascripts/overview.js"></script>
+
+</body>
+
+</html>

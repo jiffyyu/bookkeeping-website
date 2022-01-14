@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Story Yes or Yes</title>
+    <link rel="shortcut icon" href="https://res.sui.com/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="./stylesheets/common.css">
+    <link rel="stylesheet" href="./stylesheets/account.css" />
+</head>
+
+<body>
+    <!--navbar-->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="./index.html">
+                    <img src="./images/logo3.png">
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start"></div>
+
+                <div class="navbar-end">
+                    <a class="navbar-item" href="./overview.html"> Overview </a>
+                    <a class="navbar-item is-active is-tab" href="./account.html"> Account </a>
+                    <a class="navbar-item" href="./report-budget-comparison.html">
+                        Report
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container">
+            <div class="acc_top">
+                <h3 class="acc_top_title">Cash Account</h3>
+
+                <div class="columns mt-6 mb-6">
+                    <div class="column">
+                        <p class="acc_top_name has-text-centered">Balance</p>
+                        <p class="acc_top_num has-text-centered" id="acc_balance">9,796.00</p>
+                    </div>
+                    <div class="column">
+                        <p class="acc_top_name has-text-centered">Cash in</p>
+                        <p class="acc_top_num font-color-red has-text-centered" id="acc_in">39,865.00</p>
+                    </div>
+                    <div class="column">
+                        <p class="acc_top_name has-text-centered">Cash expenditure</p>
+                        <p class="acc_top_num font-color-green has-text-centered" id="acc_out">30,069.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="acc_details card p-5" id="app">
+                <template>
+                    <section>
+                        <b-field grouped group-multiline>
+                            <b-select v-model="defaultSortDirection">
+                                <option value="asc">Default sort direction: ASC</option>
+                                <option value="desc">Default sort direction: DESC</option>
+                            </b-select>
+                            <b-select v-model="perPage" :disabled="!isPaginated">
+                                <option value="5">5 per page</option>
+                                <option value="10">10 per page</option>
+                                <option value="15">15 per page</option>
+                                <option value="20">20 per page</option>
+                            </b-select>
+                            <div class="control">
+                                <b-button label="Set page to 1" :disabled="!isPaginated" @click="currentPage = 1" />
+                            </div>
+                            <div class="control is-flex">
+                                <b-switch v-model="isPaginated">Paginated</b-switch>
+                            </div>
+                            <div class="control is-flex">
+                                <b-switch v-model="isPaginationSimple" :disabled="!isPaginated">Simple pagination
+                                </b-switch>
+                            </div>
+                            <div class="control is-flex">
+                                <b-switch v-model="isPaginationRounded" :disabled="!isPaginated">Rounded pagination
+                                </b-switch>
+                            </div>
+                            <b-select v-model="paginationPosition" :disabled="!isPaginated">
+                                <option value="bottom">bottom pagination</option>
+                                <option value="top">top pagination</option>
+                                <option value="both">both</option>
+                            </b-select>
+                        </b-field>
+
+                        <b-table :data="tableData" :paginated="isPaginated" :per-page="perPage"
+                            :current-page.sync="currentPage" :pagination-simple="isPaginationSimple"
+                            :pagination-position="paginationPosition" :default-sort-direction="defaultSortDirection"
+                            :pagination-rounded="isPaginationRounded" default-sort="id" aria-next-label="Next page"
+                            aria-previous-label="Previous page" aria-page-label="Page"
+                            aria-current-label="Current page">
+
+                            <b-table-column field="id" label="ID" width="40" sortable numeric v-slot="props">
+                                {{ props.row.id }}
+                            </b-table-column>
+
+                            <b-table-column field="date" label="Date" sortable centered v-slot="props">
+                                <span class="tag is-success">
+                                    {{ new Date(props.row.date).toLocaleDateString() }}
+                                </span>
+                            </b-table-column>
+
+                            <b-table-column field="category" label="Category" sortable v-slot="props">
+                                {{ props.row.category }}
+                            </b-table-column>
+
+                            <b-table-column field="incomeandexpenses" label="IncomeAndExpenses" sortable v-slot="props">
+                                {{ props.row.incomeandexpenses }}
+                            </b-table-column>
+
+                            <b-table-column field="project" label="Project" sortable v-slot="props">
+                                {{ props.row.project }}
+                            </b-table-column>
+
+                            <b-table-column field="message" label="Message" sortable v-slot="props">
+                                {{ props.row.message }}
+                            </b-table-column>
+
+                        </b-table>
+                    </section>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+
+    <!-- Individual components -->
+    <script src="https://unpkg.com/buefy/dist/components/table"></script>
+    <script src="https://unpkg.com/buefy/dist/components/input"></script>
+
+    <script src="./javascripts/common.js"></script>
+    <script src="./javascripts/account.js"></script>
+</body>
+
+</html>

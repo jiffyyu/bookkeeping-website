@@ -1,0 +1,9 @@
+.yoy-body {
+    background: url(https://picsum.photos/id/1045/1400/1000) 100% no-repeat;
+    min-height: 100vh;
+}
+
+.yoy-login-box {
+    max-width: 600px;
+    margin: 50px auto;
+}

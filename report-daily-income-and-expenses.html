@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Story Yes or Yes</title>
+    <link rel="shortcut icon" href="https://res.sui.com/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="./stylesheets/report.css" />
+    <link href="/stylesheets/account.css" rel="stylesheet" type="text/css">
+
+    <style>
+        #DailyExpense {
+            width: 100%;
+            height: 500px;
+        }
+        
+        #DailyIncome {
+            width: 100%;
+            height: 500px;
+        }
+        
+        #tooltip {
+            display: none;
+            position: absolute;
+            /* border-bottom: 1px dotted #666; */
+            background-color: #8466d6;
+            padding: 5px;
+            text-align: left;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- Buefy components goes here -->
+
+        <!--navbar-->
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="./index.html">
+                        <img src="./images/logo3.png">
+                    </a>
+
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start"></div>
+
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="./overview.html"> Overview </a>
+                        <a class="navbar-item" href="./account.html"> Account </a>
+                        <a class="navbar-item is-active is-tab" href=""> Report </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--content-->
+        <section class="section yoy-report-section">
+            <div class="container yoy-report-content">
+                <div class="columns">
+                    <div class="column is-3">
+                        <!--menu-->
+                        <template>
+                      <b-menu>
+                          <b-menu-list>
+                              <b-menu-item icon="compare" label="Budget Comparison"  href="report-budget-comparison.html"></b-menu-item>
+                              <b-menu-item icon="cash" label="Cash Flow"  href="report-cash-flow.html"></b-menu-item>
+                              <b-menu-item icon="tablet-dashboard" label="Consumption Level" href="report-consumption-level.html"></b-menu-item>
+                              <b-menu-item icon="bank" label="Balance Sheet" href="report-balance-sheet.html"></b-menu-item>
+                              <b-menu-item icon="book" label="Income and Expendses Trends" href="report-income-and-expenses-trends.html"></b-menu-item>
+                              <b-menu-item icon="card-plus" label="Daily Income and Expenses" :active="true" href="report-daily-income-and-expenses.html"></b-menu-item>
+                              <b-menu-item icon="cash-register" label="Income Sources" href="report-income-sources.html"></b-menu-item>
+                              <b-menu-item icon="calculator" label="Budget Allocation" href="report-budget-allocation.html"></b-menu-item>
+                              <b-menu-item icon="clipboard-text-multiple-outline" label="Comparative Expenditure" href="report-comparative-expenditure.html"></b-menu-item>
+                          </b-menu-list>
+                      </b-menu>
+                    </template>
+                    </div>
+                    <div class="column card">
+                        <h3 class="has-text-centered">Daily Expense Statement(in November)</h3>
+                        <div id="DailyExpense"></div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="mt-6 has-text-centered" style="position: relative;">
+                            <h3 class="has-text-centered">Daily Expense Statement (Created by D3) (Unit: HK$ per 1,000)</h3>
+                            <svg width="800" height="480">
+                            </svg>
+                            <div id="tooltip">
+                                <h3 id="title">-</h3>
+                                <p id="subtitle">-</p>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <h3 class="has-text-centered">Daily Income Statement(in November)</h3>
+                        <div id="DailyIncome"></div>
+
+
+                        <div class="content my-6">
+                            <h1>Data Summary</h1>
+                            <p>
+                                From the above figure, we can get some information as following:
+                            </p>
+                            <ol>
+                                <li>
+                                    The largest amount of expenditure on housing in November was HK$8,010, of which housing rent alone accounted for HK$7,000.
+                                </li>
+                                <li>
+                                    Spending on transport and leisure is also high, while the pursuit of food is low.
+                                </li>
+                                <li>
+                                    Apart from the highest income from wages, the income from stock trading is also significant.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="./javascripts/common.js"></script>
+    <script src="./javascripts/report-daily-income-and-expenses.js"></script>
+</body>
+
+</html>

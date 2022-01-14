@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Story Yes or Yes</title>
+    <link rel="shortcut icon" href="https://res.sui.com/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="./stylesheets/report.css" />
+    <link rel="stylesheet" href="./stylesheets/report-balance-sheet.css" />
+    <style>
+        #TotalAssets {
+            width: 100%;
+            height: 500px;
+        }
+        
+        #TotalLiabilities {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Buefy components goes here -->
+
+        <!--navbar-->
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="./index.html">
+                        <img src="./images/logo3.png">
+                    </a>
+
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start"></div>
+
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="./overview.html"> Overview </a>
+                        <a class="navbar-item" href="./account.html"> Account </a>
+                        <a class="navbar-item is-active is-tab" href=""> Report </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--content-->
+        <section class="section yoy-report-section">
+            <div class="container yoy-report-content">
+                <div class="columns">
+                    <div class="column is-3">
+                        <!--menu-->
+                        <template>
+                            <b-menu>
+                                <b-menu-list>
+                                    <b-menu-item icon="compare" label="Budget Comparison"  href="report-budget-comparison.html"></b-menu-item>
+                                    <b-menu-item icon="cash" label="Cash Flow"  href="report-cash-flow.html"></b-menu-item>
+                                    <b-menu-item icon="tablet-dashboard" label="Consumption Level" href="report-consumption-level.html"></b-menu-item>
+                                    <b-menu-item icon="bank" label="Balance Sheet" :active="true" href="report-balance-sheet.html"></b-menu-item>
+                                    <b-menu-item icon="book" label="Income and Expendses Trends" href="report-income-and-expenses-trends.html"></b-menu-item>
+                                    <b-menu-item icon="card-plus" label="Daily Income and Expenses" href="report-daily-income-and-expenses.html"></b-menu-item>
+                                    <b-menu-item icon="cash-register" label="Income Sources" href="report-income-sources.html"></b-menu-item>
+                                    <b-menu-item icon="calculator" label="Budget Allocation" href="report-budget-allocation.html"></b-menu-item>
+                                    <b-menu-item icon="clipboard-text-multiple-outline" label="Comparative Expenditure" href="report-comparative-expenditure.html"></b-menu-item>
+                                </b-menu-list>
+                            </b-menu>
+                        </template>
+                    </div>
+                    <div class="column card">
+                        <h2 class="has-text-centered">Asset Pie Chart</h2>
+
+                        <div id="TotalAssets"></div>
+
+                        <div class="columns mb-4">
+                            <div class="column">
+                                <p class="balance has-text-centered">Total Assets</p>
+                                <p class="balance_num has-text-centered" id="acc_balance">HK$85,690.00</p>
+                            </div>
+                        </div>
+
+                        <template>
+                            <b-table :data="data1" :columns="columns1"></b-table>
+                        </template>
+
+                        <br>
+                        <br>
+                        <h2 class="has-text-centered">Liability Pie Chart</h2>
+
+                        <div id="TotalLiabilities"></div>
+
+                        <div class="columns mb-4">
+                            <div class="column">
+                                <p class="balance has-text-centered">Total Liabilities</p>
+                                <p class="balance_num2 has-text-centered" id="acc_balance">HK$20,700.00</p>
+                            </div>
+                        </div>
+
+
+                        <template>
+                            <b-table :data="data2" :columns="columns2"></b-table>
+                        </template>
+
+
+                        <div class="content my-6">
+                            <h1>Data Summary</h1>
+                            <p>
+                                From the above figure, we can get some information as following:
+                            </p>
+                            <ol>
+                                <li>
+                                    The most assets are held in deposit book, followed by stock accounts. And the least amount is deposited in Octopus.
+                                </li>
+                                <li>
+                                    The liability amount for long-term loans is the highest, with HK$8,000.
+                                </li>
+                                <li>
+                                    The ability to repay is still relatively strong in the context of total assets and total liabilities.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Individual components -->
+    <script src="https://unpkg.com/buefy/dist/components/table"></script>
+    <script src="https://unpkg.com/buefy/dist/components/input"></script>
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="./javascripts/common.js"></script>
+    <script src="./javascripts/report-balance-sheet.js"></script>
+</body>
+
+</html>

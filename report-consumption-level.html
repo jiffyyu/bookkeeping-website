@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Story Yes or Yes</title>
+    <link rel="shortcut icon" href="https://res.sui.com/favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./stylesheets/report.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Buefy components goes here -->
+
+        <!--navbar-->
+        <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="./index.html">
+                        <img src="./images/logo3.png">
+                    </a>
+
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                        data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+
+                    </div>
+
+                    <div class="navbar-end">
+                        <a class="navbar-item" href="./overview.html">
+                            Overview
+                        </a>
+                        <a class="navbar-item" href="./account.html">
+                            Account
+                        </a>
+                        <a class="navbar-item is-active is-tab" href="">
+                            Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--content-->
+        <section class="section yoy-report-section">
+            <div class="container yoy-report-content">
+                <div class="columns">
+                    <div class="column is-3">
+                        <!--menu-->
+                        <template>
+                            <b-menu>
+                                <b-menu-list>
+                                    <b-menu-item icon="compare" label="Budget Comparison"  href="report-budget-comparison.html"></b-menu-item>
+                                    <b-menu-item icon="cash" label="Cash Flow"  href="report-cash-flow.html"></b-menu-item>
+                                    <b-menu-item icon="tablet-dashboard" label="Consumption Level" :active="true" href="report-consumption-level.html"></b-menu-item>
+                                    <b-menu-item icon="bank" label="Balance Sheet" href="report-balance-sheet.html"></b-menu-item>
+                                    <b-menu-item icon="book" label="Income and Expendses Trends" href="report-income-and-expenses-trends.html"></b-menu-item>
+                                    <b-menu-item icon="card-plus" label="Daily Income and Expenses" href="report-daily-income-and-expenses.html"></b-menu-item>
+                                    <b-menu-item icon="cash-register" label="Income Sources" href="report-income-sources.html"></b-menu-item>
+                                    <b-menu-item icon="calculator" label="Budget Allocation" href="report-budget-allocation.html"></b-menu-item>
+                                    <b-menu-item icon="clipboard-text-multiple-outline" label="Comparative Expenditure"  href="report-comparative-expenditure.html"></b-menu-item>
+                                </b-menu-list>
+                            </b-menu>
+                        </template>
+                    </div>
+                    <div class="column card">
+                        <canvas id="chartConsumptionLevel"></canvas>
+                        <div class="mt-6 has-text-centered" style="overflow: hidden;">
+                            <h3 class="mb-4">Stacke View of Consumption Level from 2016 to 2020 (Created by D3)</h3>
+                            <svg width="400" height="100">
+                                <g></g>
+                            </svg>
+                        </div>
+                        <div class="content my-6">
+                            <h1>Data Summary</h1>
+                            <p>From the above figure, we can get some information as following:</p>
+                            <ol>
+                                <li>The amount of real comsumption is higher than the amount of average comsumption of whole population from 2016 to 2020.</li>
+                                <li>Since the year of 2018, the amount of real comsumption has an obvious increase.</li>
+                                <li>In 2020, the amount of real comsumption is the highest one.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Full bundle -->
+    <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <script src="./javascripts/common.js"></script>
+    <script src="./javascripts/report-consumption-level.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+h2 {
+    width: 100%;
+    color: #312f2c;
+    font-family: "helvetica neue", "arial", "hiragino sans gb", "wenquanyi micro hei";
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.balance {
+    padding-top: 35px;
+    font-size: 32px;
+    color: rgb(15, 12, 12);
+    font-weight: bold;
+}
+
+.balance_num {
+    font-size: 30px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: rgba(190, 57, 57, 0.733);
+}
+
+.balance_num2 {
+    font-size: 30px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: rgba(57, 190, 64, 0.836);
+}
